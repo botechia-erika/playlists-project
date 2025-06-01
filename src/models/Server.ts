@@ -7,18 +7,23 @@ import cors from "cors";
 import morgan from "morgan";
 import path from "path";
 import mongoose from "mongoose";
-
-/*Esse é o modelo de servidor a ser usado em index*/
+import { UserRouter } from "../routes/UserRouter";
+import { PlaylistRouter } from "../routes/PlaylistRouter";
 
 export class Server {
   private app: Application;
-  private port: number = port; // Corrigir para tipo 'number'
+  private port: number = port; 
+  private MONGOURI: string = MONGOURI || ""; 
 
+  private userRouter = new UserRouter();
+  private userBasePath :string= "/users"
+  private playlistRouter = new PlaylistRouter();
+  private playlistBasePath :string= "/playlists"
   constructor() {
     mongoose.set("strictQuery", true);
     mongoose
       .connect(
-        MONGOURI||"",
+        MONGOURI as string, // Corrigir para tipo 'string | undefined'
         {
           useNewUrlParser: true,
           useUnifiedTopology: true,
@@ -27,25 +32,27 @@ export class Server {
       .then(() => {
         console.log("Connected to MongoDB");
       })
-      .catch((err:any) => {
+      .catch((err: any) => {
         console.error("Error connecting to MongoDB", err);
       });
 
     this.app = express();
     this.middlewares();
     this.routes();
-    // Não chame listen aqui, pois chamaremos de fora
   }
 
- middlewares() {
-  this.app.use(express.json());
-  this.app.use(express.urlencoded({ extended: true }));
-  this.app.use(morgan("dev"));
-  this.app.use(cors());
- }
+  middlewares() {
+    this.app.use(express.static(path.join(__dirname, "../public")));
+    this.app.use(express.static(path.join(__dirname, "../uploads")));
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(morgan("dev"));
+    this.app.use(cors());
+  }
 
   routes() {
-    
+    this.app.use(this.userBasePath, this.userRouter.getRouter());
+    this.app.use(this.playlistBasePath, this.playlistRouter.getRouter());
   }
 
   listen() {

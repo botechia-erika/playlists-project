@@ -1,19 +1,8 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
-
-export enum ROLES {
-  PF="PF",
-  PJ="PJ",
-  CLT="CLT"
-}
-
 // You should move this interface to the User-related file
-export interface TokenPayload {
-  id: any;
-  name: any;
-  role: ROLES;
-}
+import { TokenPayload } from "../interfaces/interfaces";
 
 export class TokenManager {
   private JWT_KEY: any;
