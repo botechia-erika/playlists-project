@@ -1,7 +1,7 @@
 import express, {Router} from "express";
 import { UserController } from "../controllers/UserController";
 
-export class UsersRouter {
+export class UserRouter {
     private router: Router;
     private userController: UserController;
 

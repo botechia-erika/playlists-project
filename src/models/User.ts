@@ -8,8 +8,8 @@ export class User {
     private email: string,
     private password: string,
     private ROLE: ROLES= ROLES.NORMAL,
-    private createdAt: Date =( new Date()).toISOString() as unknown as Date,
-    private updatedAt: Date = new Date().toISOString() as unknown as Date
+    private createdAt: string = new Date().toISOString(),
+    private updatedAt: string = new Date().toISOString() 
   ) {}
 
   getId(): string {
@@ -62,7 +62,7 @@ export class User {
   }
 
   setUpdatedAt(): void {
-    this.updatedAt = (new Date()).toISOString() as unknown as Date;
+    this.updatedAt = new Date().toISOString();
   }
 
   toUserModel(): IUserModel {
@@ -83,8 +83,8 @@ export class User {
       email: this.email,
       password: this.password,
       ROLE: this.ROLE,
-      createdAt: this.createdAt,
-      updatedAt: this.updatedAt,
+      created_at: this.createdAt,
+      updated_at: this.updatedAt,
     };
   }
  

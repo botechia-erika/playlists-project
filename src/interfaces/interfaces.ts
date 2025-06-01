@@ -1,9 +1,14 @@
 import { ROLES } from "../enums/enums";
+
+/** INTERFCES PARA SERVICES **/
+
 export interface TokenPayload {
   id: string;
   name: string;
   role: ROLES;
 }
+
+/** INTERFACES PARA User **/
 
 export interface IUserDB {
   id: string;
@@ -11,8 +16,8 @@ export interface IUserDB {
   email: string;
   password: string;
   ROLE: ROLES;
-  createdAt: Date | unknown;
-  updatedAt: Date | unknown;
+  updated_at: string;
+  created_at: string;
 }
 
 export interface IUserModel {
@@ -20,8 +25,8 @@ export interface IUserModel {
   name: string;
   email: string;
   role: ROLES;
-  createdAt: Date|unknown;
-  updatedAt: Date|unknown;
+  updatedAt: string;
+  createdAt: string;
 }
 
 export interface SignUpInputDTO {
@@ -39,4 +44,59 @@ export interface LoginInputDTO {
 }
 export interface LoginOutputDTO {
   token: string;
+}
+
+/** INTERFACES PARA Playlists **/
+export interface IPlaylistDB {
+  id: string;
+  creator_id: string;
+  name: string;
+  likes: number;
+  dislikes: number;
+  updated_at: string;
+  created_at: string;
+}
+
+export interface IPlaylistModel {
+  id: string;
+  creatorId: string;
+  name: string;
+  likes: number;
+  dislikes: number;
+  updated_at: string;
+  created_at: string;
+}
+
+
+export interface CreatePlaylistInputDTO {
+  name: string;
+  // recebe na controller o token do usuário logado - endpóint protegido
+  token: string;
+}
+
+
+export interface GetPlaylistsInputDTO {
+  // recebe na controller o token do usuário logado - endpóint protegido
+  token: string;
+
+}
+
+export interface EditPlaylistInputDTO {
+  name: string;
+  // recebe na controller o token do usuário logado - endpóint protegido
+  token: string;
+  idToEdit: string; // path params para editar a playlist
+}
+
+export interface DeletePlaylistsInputDTO {
+  token: string;
+  idToDelete: string; // path params para deletar a playlist
+}
+
+/** INTERFACES PARA LikeOrDislikePlaylist **/
+
+export interface ILikeOrDislikePlaylistInputDTO {
+  token: string;
+  idToLikeOrDislike: string;
+  like: boolean;
 }
