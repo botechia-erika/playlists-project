@@ -1,0 +1,61 @@
+{
+  "name": "playlists-project",
+  "version": "1.0.0",
+  "description": "playlists-project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "dev": "concurrently \"tsc -w\" \"wait-on ./build/index.js && nodemon ./build/index.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/botechia-erika/playlists-project.git"
+  },
+  "keywords": [],
+  "author": "BOTECHIA-ERIKA <24.01905-4@maua.br>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/botechia-erika/playlists-project/issues"
+  },
+  "homepage": "https://github.com/botechia-erika/playlists-project#readme",
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.3",
+    "@types/body-parser": "^1.19.2",
+    "@types/cors": "^2.8.13",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.17",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/knex": "^0.16.1",
+    "@types/mongoose": "^5.11.96",
+    "@types/morgan": "^1.9.9",
+    "@types/multer": "^1.4.12",
+    "@types/node": "^20.2.5",
+    "@types/sqlite3": "^3.1.11",
+    "@types/uuid": "^9.0.2",
+    "colors": "^1.4.0",
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.0.4",
+    "wait-on": "^8.0.3",
+    "zod": "^3.22.2"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "knex": "^3.1.0",
+    "moment": "^2.29.4",
+    "moment-range": "^4.0.2",
+    "mongoose": "^8.9.3",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "package": "^1.0.1",
+    "sqlite3": "^5.1.6",
+    "uuid": "^9.0.1"
+  }
+}
