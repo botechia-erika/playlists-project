@@ -24,3 +24,19 @@ export interface IUserModel {
   updatedAt: Date|unknown;
 }
 
+export interface SignUpInputDTO {
+  name: string;
+  email: string;
+  password: string;
+}
+
+export interface SignUpOutputDTO {
+  token: string;
+}
+export interface LoginInputDTO {
+  email: string;
+  password: string;
+}
+export interface LoginOutputDTO {
+  token: string;
+}
