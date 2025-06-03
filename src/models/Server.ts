@@ -9,6 +9,7 @@ import path from "path";
 import mongoose from "mongoose";
 import { UserRouter } from "../routes/UserRouter";
 import { PlaylistRouter } from "../routes/PlaylistRouter";
+import { MainRouter } from "../routes/MainRouter";
 
 export class Server {
   private app: Application;
@@ -19,6 +20,8 @@ export class Server {
   private userBasePath :string= "/users"
   private playlistRouter = new PlaylistRouter();
   private playlistBasePath :string= "/playlists"
+  private mainBasePath: string = "/";
+  private mainRouter: MainRouter = new MainRouter();
   constructor() {
     mongoose.set("strictQuery", true);
     mongoose
@@ -53,6 +56,7 @@ export class Server {
   routes() {
     this.app.use(this.userBasePath, this.userRouter.getRouter());
     this.app.use(this.playlistBasePath, this.playlistRouter.getRouter());
+    this.app.use(this.mainBasePath, this.mainRouter.getRouter());
   }
 
   listen() {

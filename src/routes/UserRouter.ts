@@ -6,13 +6,14 @@ export class UserRouter {
     private userController: UserController;
 
     constructor() {
-        this.router = Router();
-        this.userController = new UserController();
+       this.router = express.Router();
+       this.userController = new UserController();
         this.routes();
     }
 
     private routes() {
-       
+        this.router.post("/sign-up", this.userController.signUp);
+        this.router.post("/sign-in", this.userController.signIn);
     }
 
     public getRouter(): Router {

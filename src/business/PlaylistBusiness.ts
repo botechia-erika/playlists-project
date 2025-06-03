@@ -5,8 +5,8 @@ export class PlaylistBusiness {
   
 
     constructor(
-        private playlistDatabase : PlaylistDatabase ,
-        private idGenerator: IdGenerator,
-        private tokenManager: TokenManager
+        private playlistDatabase : PlaylistDatabase = new PlaylistDatabase(),
+        private idGenerator: IdGenerator = new IdGenerator(),
+        private tokenManager: TokenManager = new TokenManager()
     ) {}
 }
